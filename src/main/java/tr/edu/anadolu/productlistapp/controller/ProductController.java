@@ -53,6 +53,17 @@ public class ProductController {
                                                  @RequestParam(defaultValue = "5") int size) {
         return productService.findAll(page, size);
     }
+    @GetMapping("/listProducts/available")
+    public ResponseEntity<List<Product>> findAllAvailable(@RequestParam(defaultValue = "0") int page,
+                                                          @RequestParam(defaultValue = "5") int size) {
+        return productService.findAllAvailable(page, size);
+    }
+
+    @GetMapping("/listProducts/notAvailable")
+    public ResponseEntity<List<Product>> findAllNotAvailable(@RequestParam(defaultValue = "0") int page,
+                                                             @RequestParam(defaultValue = "5") int size) {
+        return productService.findAllNotAvailable(page, size);
+    }
 
     @PostMapping("/createProduct")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {

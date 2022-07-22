@@ -17,7 +17,6 @@ import java.util.Optional;
 @Service
 public class ProductService {
     ProductRepository productRepository;
-
     static int id = 1;
 
     public ProductService(ProductRepository productRepository) {
@@ -35,6 +34,31 @@ public class ProductService {
         }
     }
 
+    public ResponseEntity<List<Product>> findAllAvailable(int page, int size) {
+        Pageable pageableRequest = PageRequest.of(page, size, Sort.by("productName"));
+        Page<Product> page1 = productRepository.findAll(pageableRequest);
+        List<Product> products = new ArrayList<>(page1.getContent());
+        List<Product> availableProducts = new ArrayList<>();
+        for( Product product : products ) {
+            if(product.isAvailability()) {
+                availableProducts.add(product);
+            }
+        }
+        return new ResponseEntity<>(availableProducts, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Product>> findAllNotAvailable(int page, int size) {
+        Pageable pageableRequest = PageRequest.of(page, size, Sort.by("productName"));
+        Page<Product> page1 = productRepository.findAll(pageableRequest);
+        List<Product> products = new ArrayList<>(page1.getContent());
+        List<Product> notAvailableProducts = new ArrayList<>();
+        for( Product product : products ) {
+            if(!product.isAvailability()) {
+                notAvailableProducts.add(product);
+            }
+        }
+        return new ResponseEntity<>(notAvailableProducts, HttpStatus.OK);
+    }
 
     public ResponseEntity<Product> createNewProduct(Product product) {
 
