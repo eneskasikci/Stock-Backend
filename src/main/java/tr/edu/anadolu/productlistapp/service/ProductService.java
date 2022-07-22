@@ -123,7 +123,12 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(productId);
         if (product.isPresent()) {
             Product foundProduct = product.get();
-            foundProduct.setAvailability(!foundProduct.isAvailability());
+            foundProduct.setAvailability(!foundProduct.isAvailability()); // this is the simplifed version of if-else statement below
+//            if (foundProduct.isAvailability()) {
+//                foundProduct.setAvailability(false);
+//            } else {
+//                foundProduct.setAvailability(true);
+//            }
             return productRepository.save(foundProduct);
         }
         return null;
