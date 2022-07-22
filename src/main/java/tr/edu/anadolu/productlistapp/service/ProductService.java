@@ -60,6 +60,7 @@ public class ProductService {
         return new ResponseEntity<>(notAvailableProducts, HttpStatus.OK);
     }
 
+    }
     public ResponseEntity<Product> createNewProduct(Product product) {
 
         List<Product> products = new ArrayList<>();
