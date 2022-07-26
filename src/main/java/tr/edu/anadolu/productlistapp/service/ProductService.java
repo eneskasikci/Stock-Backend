@@ -46,6 +46,13 @@ public class ProductService {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+
+        // TODO: ID always starts at 1 in this way
+        // TODO: so after we restart the project and add an item it replaces
+        // TODO: the first item and starts at URUN_2 again.
+        // TODO: we need to get the size of products that are already in database
+        // TODO: and start incrementing the ID from there.
+
         product.setProductId("URUN_" + id++);
         product.setAvailability(true);
         productRepository.save(product);
