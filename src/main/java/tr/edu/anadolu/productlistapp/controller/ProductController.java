@@ -48,6 +48,12 @@ public class ProductController {
         return productService.sortByType(page, size, productType);
     }
 
+    @GetMapping("/sortByCategory/{productCategory}")
+    public ResponseEntity<List<Product>> sortByCategory(@RequestParam(defaultValue = "0") int page,
+                                                    @RequestParam(defaultValue = "5") int size, @PathVariable String productCategory) {
+        return productService.sortByCategory(page, size, productCategory);
+    }
+
     @GetMapping("/listProducts")
     public ResponseEntity<List<Product>> findAll(@RequestParam(defaultValue = "0") int page,
                                                  @RequestParam(defaultValue = "5") int size) {

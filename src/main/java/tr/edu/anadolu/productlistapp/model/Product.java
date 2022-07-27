@@ -13,6 +13,7 @@ public class Product {
     private String productName;
     private double productPrice;
     private String productType;
+    private String productCategory;
     private String productImage;
     private boolean availability;
 

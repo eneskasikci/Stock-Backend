@@ -9,6 +9,8 @@ public class ProductDetailViewModel {
     private String productName;
     private double productPrice;
     private String productType;
+    private String productCategory;
+
 
     List<ProductImage> productImageList;
 }

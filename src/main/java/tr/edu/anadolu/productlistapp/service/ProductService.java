@@ -18,8 +18,6 @@ import java.util.Optional;
 public class ProductService {
     ProductRepository productRepository;
 
-    static int id = 1;
-
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -39,6 +37,7 @@ public class ProductService {
     public ResponseEntity<Product> createNewProduct(Product product) {
 
         List<Product> products = new ArrayList<>();
+
         productRepository.findAll().forEach(products::add);
 
         for (Product prdct : products) {
@@ -47,13 +46,8 @@ public class ProductService {
             }
         }
 
-        // TODO: ID always starts at 1 in this way
-        // TODO: so after we restart the project and add an item it replaces
-        // TODO: the first item and starts at URUN_2 again.
-        // TODO: we need to get the size of products that are already in database
-        // TODO: and start incrementing the ID from there.
-
-        product.setProductId("URUN_" + id++);
+        int size=1+products.size();
+        product.setProductId("URUN_" + size++);
         product.setAvailability(true);
         productRepository.save(product);
         return new ResponseEntity<>(product, HttpStatus.OK);
@@ -122,6 +116,19 @@ public class ProductService {
         return new ResponseEntity<>(productType, HttpStatus.OK);
     }
 
+    public ResponseEntity<List<Product>> sortByCategory(int page, int size, String userGivenCategory) {
+        Pageable pageableRequest = PageRequest.of(page, size);
+        Page<Product> page2 = productRepository.findAll(pageableRequest);
+        List<Product> products= new ArrayList<>(page2.getContent());
+        List<Product> productCategory = new ArrayList<>();
+        for( Product product : products ) {
+            if(product.getProductCategory().equals(userGivenCategory)) {
+                productCategory.add(product);
+            }
+        }
+        return new ResponseEntity<>(productCategory, HttpStatus.OK);
+    }
+
     public void deleteAll() {
         productRepository.deleteAll();
     }
@@ -168,4 +175,6 @@ public class ProductService {
         return new ResponseEntity<>(availableProducts, HttpStatus.OK);
 
     }
+
+
 }
