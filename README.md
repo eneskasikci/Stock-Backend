@@ -1,6 +1,6 @@
 # Introduction
 
-This is the backend of canteen application for Anadolu University Computer Research and Application Center.
+This is the backend of canteen application.
 
 This project made with a team of 6 interns.
 
