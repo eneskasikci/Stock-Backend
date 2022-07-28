@@ -55,21 +55,28 @@ When products are added, they are available by default and will be listed to pur
             "productId": "URUN_1",
             "productName": "Espresso",
             "productPrice": 3.0,
-            "productType": "ICECEK",
+            "productCategory": "ICECEK",
+            "productType": "SOGUK",
             "productImage": null,
-            "availability": true
+            "availability": true,
         }         
 
 #### Listing the products with their type
 - localhost:8081/api/Product/sortByType/{productType}
 
 ### Delete Mappings
-- localhost:8081/api/Product/{productId}
+- localhost:8081/api/Product/deleteProduct/{productId}
 
 Deletes the product from the database with DELETE mapping.
 
 ### Put Mappings
+#### Changing availability of the product.
 If the product not available it shouldn't be purchasable. So the admin should change the availability of the product.
 - localhost:8081/api/Product/{productId}/availability
 
 This changes the state of the availability of the product. If the product is available it makes it not available and vice-versa.
+
+#### Updating the product details
+- localhost:8081/api/Product/updateProduct/{productId}
+
+Updates the product after changing its values.
