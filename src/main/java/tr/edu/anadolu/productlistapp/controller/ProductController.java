@@ -107,7 +107,7 @@ public class ProductController {
     @PutMapping("/{productId}/availability")
     @ApiOperation(value = "Sets the product availability if it can be sold or not.", notes = "After calling, the availability of the product changes to true or false.")
     public Product setAvailability(@PathVariable @ApiParam(value = "ID of the product") String productId) {
-        logger.debug("The stock status of the product with: " + productId + " id number has been updated: " + productService.getProduct(productId).isAvailability());
+        logger.debug("The stock status of the product with : " + productId + " id number has been updated: " + productService.getProduct(productId).isAvailability());
         return productService.setAvailability(productId);
     }
 
