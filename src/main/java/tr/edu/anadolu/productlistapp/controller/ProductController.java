@@ -1,5 +1,7 @@
 package tr.edu.anadolu.productlistapp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.anadolu.productlistapp.model.Product;
@@ -10,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/Product")
 public class ProductController {
-
+    private Logger logger= LoggerFactory.getLogger(this.getClass());
     private ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -21,36 +23,42 @@ public class ProductController {
     @GetMapping("/sortByNameAsc")
     public ResponseEntity<List<Product>> sortByNameAsc(@RequestParam(defaultValue = "0") int page,
                                                        @RequestParam(defaultValue = "5") int size) {
+        logger.debug("Products are listed with ascending order by name properties.");
         return productService.sortByNameAsc(page, size);
     }
 
     @GetMapping("/sortByNameDesc")
     public ResponseEntity<List<Product>> sortByNameDesc(@RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "5") int size) {
+        logger.debug("Products are listed with descending order by name properties.");
         return productService.sortByNameDesc(page, size);
     }
 
     @GetMapping("/sortByPriceAsc")
     public ResponseEntity<List<Product>> sortByPriceAsc(@RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "5") int size) {
+        logger.debug("Products are listed with ascending order by price properties.");
         return productService.sortByPriceAsc(page, size);
     }
 
     @GetMapping("/sortByPriceDesc")
     public ResponseEntity<List<Product>> sortByPriceDesc(@RequestParam(defaultValue = "0") int page,
                                                          @RequestParam(defaultValue = "5") int size) {
+        logger.debug("Products are listed with descending order by price properties.");
         return productService.sortByPriceDesc(page, size);
     }
 
     @GetMapping("/sortByType/{productType}")
     public ResponseEntity<List<Product>> sortByType(@RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "5") int size, @PathVariable String productType) {
+        logger.debug("Products are listed which have this Type property: "+productType);
         return productService.sortByType(page, size, productType);
     }
 
     @GetMapping("/sortByCategory/{productCategory}")
     public ResponseEntity<List<Product>> sortByCategory(@RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "5") int size, @PathVariable String productCategory) {
+        logger.debug("Products are listed which have this Category property: "+productCategory);
         return productService.sortByCategory(page, size, productCategory);
     }
 
