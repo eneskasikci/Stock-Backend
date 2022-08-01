@@ -8,7 +8,7 @@ Using Rest API, Spring Boot, MongoDB, Docker, RabbitMQ.
 
 # Docker Setup
 
-Start the terminal in the project directory. Run "docker-compose build" and then start the containers by "docker-compose up".
+Start the terminal in the project directory. Start the containers by "docker-compose up".
 
 In Postman connect to "localhost:8081/api/Product/{ WRITE_MAPPINGS_HERE }" to test the functions.
 
@@ -80,3 +80,6 @@ This changes the state of the availability of the product. If the product is ava
 - localhost:8081/api/Product/updateProduct/{productId}
 
 Updates the product after changing its values.
+
+#### Swagger
+-Implemented Swagger Documentation, wrote the explanation of ProductController requests. To see the documentation head over to the http://localhost:8080/swagger-ui/index.html#
