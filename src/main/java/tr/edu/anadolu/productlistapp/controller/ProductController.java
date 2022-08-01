@@ -30,6 +30,7 @@ public class ProductController {
     @ApiOperation(value = "Sorts Products with their name ascending. A->Z")
     public ResponseEntity<List<Product>> sortByNameAsc(@RequestParam(defaultValue = "0") int page,
                                                        @RequestParam(defaultValue = "5") int size) {
+        logger.debug("Products are listed with ascending order by name properties.");
         return productService.sortByNameAsc(page, size);
     }
 
@@ -37,6 +38,7 @@ public class ProductController {
     @ApiOperation(value = "Sorts Products with their name descending. Z->A")
     public ResponseEntity<List<Product>> sortByNameDesc(@RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "5") int size) {
+        logger.debug("Products are listed with descending order by name properties.");
         return productService.sortByNameDesc(page, size);
     }
 
@@ -44,6 +46,7 @@ public class ProductController {
     @ApiOperation(value = "Sorts Products from cheapest to most expensive")
     public ResponseEntity<List<Product>> sortByPriceAsc(@RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "5") int size) {
+        logger.debug("Products are listed with ascending order by price properties.");
         return productService.sortByPriceAsc(page, size);
     }
 
@@ -51,6 +54,7 @@ public class ProductController {
     @ApiOperation(value = "Sorts Products from most expensive to cheapest.")
     public ResponseEntity<List<Product>> sortByPriceDesc(@RequestParam(defaultValue = "0") int page,
                                                          @RequestParam(defaultValue = "5") int size) {
+        logger.debug("Products are listed with descending order by price properties.");
         return productService.sortByPriceDesc(page, size);
     }
 
@@ -58,6 +62,7 @@ public class ProductController {
     @ApiOperation(value = "Gets the desired product type from frontend and returns products accordingly.")
     public ResponseEntity<List<Product>> sortByType(@RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "5") int size, @PathVariable @ApiParam(value = "Type of the product") String productType) {
+        logger.debug("Products are listed with Type property: "+productType);
         return productService.sortByType(page, size, productType);
     }
 
@@ -65,6 +70,7 @@ public class ProductController {
     @ApiOperation(value = "Gets the desired product category from frontend and returns products accordingly.")
     public ResponseEntity<List<Product>> sortByCategory(@RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "5") int size, @PathVariable @ApiParam(value = "Category of the product") String productCategory) {
+        logger.debug("Products are listed with Category property: "+productCategory);
         return productService.sortByCategory(page, size, productCategory);
     }
 
