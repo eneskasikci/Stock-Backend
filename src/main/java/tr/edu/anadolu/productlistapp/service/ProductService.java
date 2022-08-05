@@ -48,7 +48,7 @@ public class ProductService {
 
         int size=1+products.size();
         product.setProductId("URUN_" + size++);
-        product.setAvailability(true);
+        //product.setAvailability(true);
         productRepository.save(product);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
@@ -65,6 +65,7 @@ public class ProductService {
             foundProduct.setProductPrice(newProduct.getProductPrice());
             foundProduct.setProductType(newProduct.getProductType());
             foundProduct.setProductImage(newProduct.getProductImage());
+            foundProduct.setAvailability(newProduct.isAvailability());
             return productRepository.save(foundProduct);
         }
         return null;
