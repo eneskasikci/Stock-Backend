@@ -1,0 +1,16 @@
+spring:
+       data:
+           mongodb:
+                database=products_listing_mongodb
+                host=${MONGO_HOST}
+                port=27017
+                repositories.enabled=true
+
+#spring.data.mongodb.database=stok_bilgisi
+#spring.data.mongodb.uri=mongodb://localhost:27017
+#Logging level changed to DEBUG.
+
+
+logging:
+    level:
+          tr.edu.anadolu.productlistapp=DEBUG

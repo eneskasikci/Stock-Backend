@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Product")
+@CrossOrigin(origins = {"http://10.27.34.164:3000"})  //(origins = {"http://ip:port"}) add cross
 @Api(value = "Product API Documentation")
 public class ProductController {
 
@@ -109,7 +110,7 @@ public class ProductController {
         logger.warn("Deleting product with id: " + productId);
         productService.deleteProduct(productId);
     }
-
+    //@CrossOrigin(origins = "*")
     @PutMapping("/{productId}/availability")
     @ApiOperation(value = "Sets the product availability if it can be sold or not.", notes = "After calling, the availability of the product changes to true or false.")
     public Product setAvailability(@PathVariable @ApiParam(value = "ID of the product") String productId) {
