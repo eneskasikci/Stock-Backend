@@ -9,6 +9,8 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
+    networks:
+      - backend
   products_listing_app:
     build: .
     container_name: products_listing_app
@@ -18,3 +20,9 @@ services:
       - "8081:8080"
     environment:
       - spring.data.mongodb.host = mongodb
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend

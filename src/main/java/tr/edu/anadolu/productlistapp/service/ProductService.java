@@ -10,7 +10,12 @@ import org.springframework.stereotype.Service;
 import tr.edu.anadolu.productlistapp.model.Product;
 import tr.edu.anadolu.productlistapp.repository.ProductRepository;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -177,5 +182,17 @@ public class ProductService {
 
     }
 
+    public void setImageString(String id, String imgString) {
+        Optional<Product> products = productRepository.findById(id);
+        Product product = products.get();
+        product.setProductImage(imgString);
+        productRepository.save(product);
+    }
+
+    public String getImageString(String id) throws IOException {
+        Optional<Product> products = productRepository.findById(id);
+        Product product = products.get();
+        return product.getProductImage();
+    }
 
 }
