@@ -154,5 +154,4 @@ public class ProductController {
     public String getImage(@PathVariable String id ) throws IOException {
         return productService.getImageString(id);
     }
-
 }
