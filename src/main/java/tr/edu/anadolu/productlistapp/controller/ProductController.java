@@ -155,5 +155,4 @@ public class ProductController {
         return productService.getImageString(id);
     }
 
-
 }
