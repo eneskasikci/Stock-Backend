@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import tr.edu.anadolu.productlistapp.model.Product;
 import tr.edu.anadolu.productlistapp.service.ProductService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/Product")
-@CrossOrigin(origins = {"http://10.27.34.164:3000"})  //(origins = {"http://ip:port"}) add cross
+//@CrossOrigin(origins = {"http://10.27.34.164:3000"})  //(origins = {"http://ip:port"}) add cross
 @Api(value = "Product API Documentation")
 public class ProductController {
 
@@ -139,5 +141,17 @@ public class ProductController {
                                                                @RequestParam(defaultValue = "5") int size) {
         logger.debug("Unavailable products are listed.");
         return productService.findNotAvailableProducts(page, size);
+    }
+
+    @PostMapping("/postImage/{id}")
+    @ApiOperation(value = "Saving the recieved Base64 format string to database")
+    public void postImage(@PathVariable String id, @RequestBody String imgStr) throws IOException {
+        productService.setImageString(id, imgStr);
+    }
+
+    @GetMapping("/getImage/{id}")
+    @ApiOperation(value = "Return a string with Base64 format")
+    public String getImage(@PathVariable String id ) throws IOException {
+        return productService.getImageString(id);
     }
 }
