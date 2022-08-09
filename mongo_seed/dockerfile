@@ -1,0 +1,11 @@
+FROM mongo:latest
+ # Will be set through Environment Files
+ARG DATABASE_URI
+
+ENV DATABASE_URI ${DATABASE_URI}
+
+COPY product.json /product.json
+
+CMD mongoimport --uri ${DATABASE_URI} --collection factors --drop --file /product.json
+
+
