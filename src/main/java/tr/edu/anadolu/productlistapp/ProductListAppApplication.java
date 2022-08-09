@@ -18,10 +18,15 @@ public class ProductListAppApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://10.27.34.164:3000",
-                        "http://10.27.32.84:*",
+                /*registry.addMapping("/**").allowedOrigins("http://10.27.34.164:3000",
                         "http://10.29.3.157:*",
-                        "http://10.27.35.194:*");
+                        "http://10.27.32.84:*",
+                        "http://10.29.3.158:*");
+            }*/
+                // sonradan düzenlenecek
+                registry.addMapping("/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("GET", "PUT", "POST", "DELETE");
             }
         };
     }
